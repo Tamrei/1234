@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="panel">
+
+        <form name="loginForm" ng-submit="login.singIn()" novalidate>
+            <input type="text" id="login" placeholder="Login" name="login" ng-model="login.login" required>
+            <input type="password" id="password" placeholder="Password" name="password"
+                   ng-model="login.password" required>
+
+            <div class="row end-xs">
+                <div class="col-xs-4">
+                    <button type="submit" name="submit" ng-disabled="!loginForm.$valid">Submit</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

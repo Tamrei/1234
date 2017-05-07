@@ -1,0 +1,89 @@
+<form name="tableForm" ng-submit="table.add()" novalidate>
+    <div class="row">
+        <div class="col-xs" ng-class="{'invalid' : tableForm.login.$invalid && !tableForm.login.$pristine,
+        'valid' : !tableForm.login.$invalid && !tableForm.login.$pristine}">
+            <input type="text" id="firstName" placeholder="First name" name="firstName"
+                   ng-model="table.newTable.firstName" required>
+        </div>
+
+        <div class="col-xs" ng-class="{'invalid' : tableForm.password.$invalid && !tableForm.password.$pristine,
+        'valid' : !tableForm.password.$invalid && !tableForm.password.$pristine}">
+            <input type="text" id="lastName" placeholder="Last name" name="password"
+                   ng-model="table.newTable.lastName" required>
+        </div>
+
+        <div class="col-xs" ng-class="{'invalid' : tableForm.password.$invalid && !tableForm.password.$pristine,
+        'valid' : !tableForm.password.$invalid && !tableForm.password.$pristine}">
+            <input type="text" id="position" placeholder="Position" name="password"
+                   ng-model="table.newTable.position" required>
+        </div>
+
+
+    </div>
+    <div class="row end-xs">
+        <div class="col-xs-4">
+            <button type="submit" name="submit" class="btn btn-default btn-block cstbtn"
+                    ng-disabled="!tableForm.$valid">
+                Submit
+            </button>
+        </div>
+    </div>
+</form>
+
+<div class="row end-xs">
+    <div class="col-xs-5">
+        <input type="text" id="filterVal" placeholder="Filter"
+               name="filterVal" ng-model-options="{debounce: 500}"
+               ng-model="table.filterVal" required>
+    </div>
+</div>
+
+<table style="width: 100%">
+    <thead>
+    <tr>
+        <th></th>
+        <th class="text-center">
+            <a href="" ng-click="table.sortType = 'firstName'; table.sortReverse = !table.sortReverse">First name</a>
+        </th>
+        <th class="text-center">
+            <a href="" ng-click="table.sortType = 'lastName'; table.sortReverse = !table.sortReverse">Last name</a>
+        </th>
+        <th class="text-center">
+            <a href="" ng-click="table.sortType = 'position'; table.sortReverse = !table.sortReverse">Position</a>
+        </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="data in table.tableData | orderBy:table.sortType:table.sortReverse track by $index ">
+        <th>
+            <input type="checkbox" ng-model="data.isChecked">
+        </th>
+        <td>
+            <input ng-change="table.update($index)" ng-model-options="{debounce: 500}" type="text"
+                   id="{{'firstName' + $index}}"
+                   placeholder="" name="{{'firstName' + $index}}"
+                   ng-model="data.firstName">
+        </td>
+        <td>
+            <input ng-change="table.update($index)" ng-model-options="{debounce: 500}" type="text"
+                   id="{{'lastName' + $index}}"
+                   placeholder="" name="{{'lastName' + $index}}"
+                   ng-model="data.lastName">
+        </td>
+        <td>
+            <input ng-change="table.update($index)" ng-model-options="{debounce: 500}" type="text"
+                   id="{{'position' + $index}}"
+                   placeholder="" name="{{'position' + $index}}"
+                   ng-model="data.position">
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="row end-xs">
+    <div class="col-xs-4">
+    <button ng-click="table.delete()" type="submit"> Delete </button>
+    </div>
+</div>
+
