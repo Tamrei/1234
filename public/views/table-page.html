@@ -60,19 +60,19 @@
             <input type="checkbox" ng-model="data.isChecked">
         </th>
         <td>
-            <input ng-change="table.update($index)" ng-model-options="{debounce: 500}" type="text"
+            <input ng-change="table.update(data)" ng-model-options="{debounce: 500}" type="text"
                    id="{{'firstName' + $index}}"
                    placeholder="" name="{{'firstName' + $index}}"
                    ng-model="data.firstName">
         </td>
         <td>
-            <input ng-change="table.update($index)" ng-model-options="{debounce: 500}" type="text"
+            <input ng-change="table.update(data)" ng-model-options="{debounce: 500}" type="text"
                    id="{{'lastName' + $index}}"
                    placeholder="" name="{{'lastName' + $index}}"
                    ng-model="data.lastName">
         </td>
         <td>
-            <input ng-change="table.update($index)" ng-model-options="{debounce: 500}" type="text"
+            <input ng-change="table.update(data)" ng-model-options="{debounce: 500}" type="text"
                    id="{{'position' + $index}}"
                    placeholder="" name="{{'position' + $index}}"
                    ng-model="data.position">

@@ -13,7 +13,7 @@
 
         vm.getAllTableData = function () {
             tableService.getTableData(function (err, res) {
-                vm.tableData = JSON.parse(JSON.stringify(res));
+                if(!err) vm.tableData = JSON.parse(JSON.stringify(res));
             });
         };
 
@@ -27,31 +27,36 @@
             });
 
             tableService.deleteTables({ids: ids}, function (err, res) {
-                vm.tableData = res;
+                if(!err) vm.tableData = res;
             });
         };
 
         vm.add = function () {
             tableService.addTables(vm.newTable, function (err, res) {
-                vm.tableData.push(res);
+                if(!err) {
+                    vm.newTable = {};
+                    vm.tableData.push(res);
+                }
             })
         };
 
-        vm.update = function (index) {
-            tableService.updateTable(vm.tableData[index], function (err, res) {
-                vm.tableData = res;
+        vm.update = function (data) {
+            tableService.updateTable(data, function (err, res) {
+                if(!err) vm.tableData = res;
             })
         };
 
         var filterWatcher = $scope.$watch(function () {
             return vm.filterVal;
-        }, function (value) {
-            if (vm.filterVal) {
-                tableService.getFilteredTable(value, function (err, data) {
-                    if (!err) vm.tableData = data;
-                });
-            } else {
-                vm.getAllTableData();
+        }, function (value, oldVal) {
+            if (value !== oldVal) {
+                if (!value) {
+                    vm.getAllTableData();
+                } else {
+                    tableService.getFilteredTable(value, function (err, data) {
+                        if (!err) vm.tableData = data;
+                    });
+                }
             }
         });
 
