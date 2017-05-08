@@ -66,13 +66,5 @@
         $scope.$on("$destroy", function handler() {
             filterWatcher();
         });
-
-        vm.getTableIndexById = function(id) {
-            for (var i = 0; i < vm.tableData.length; i++) {
-                if (vm.tableData[i].id == id) return i;
-            }
-
-            return -1;
-        }
     }
 })();
