@@ -34,6 +34,7 @@
         vm.add = function () {
             tableService.addTables(vm.newTable, function (err, res) {
                 if(!err) {
+                    $scope.tableForm.$setPristine();
                     vm.newTable = {};
                     vm.tableData.push(res);
                 }

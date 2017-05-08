@@ -2,8 +2,15 @@
     <div class="panel">
 
         <form name="loginForm" ng-submit="login.singIn()" novalidate>
-            <input type="text" id="login" placeholder="Login" name="login" ng-model="login.login" required>
-            <input type="password" id="password" placeholder="Password" name="password"
+
+            <input ng-class="{'invalid' : loginForm.login.$invalid && !loginForm.login.$pristine,
+                   'valid' : !loginForm.login.$invalid && !loginForm.login.$pristine}"
+                   type="text" id="login" placeholder="Login" name="login"
+                   ng-model="login.login" required>
+
+            <input ng-class="{'invalid' : loginForm.password.$invalid && !loginForm.password.$pristine,
+                   'valid' : !loginForm.password.$invalid && !loginForm.password.$pristine}"
+                   type="password" id="password" placeholder="Password" name="password"
                    ng-model="login.password" required>
 
             <div class="row end-xs">

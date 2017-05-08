@@ -1,23 +1,25 @@
 <form name="tableForm" ng-submit="table.add()" novalidate>
     <div class="row">
-        <div class="col-xs" ng-class="{'invalid' : tableForm.login.$invalid && !tableForm.login.$pristine,
-        'valid' : !tableForm.login.$invalid && !tableForm.login.$pristine}">
-            <input type="text" id="firstName" placeholder="First name" name="firstName"
+        <div class="col-xs">
+            <input ng-class="{'invalid' : tableForm.firstName.$invalid && !tableForm.firstName.$pristine,
+                   'valid' : !tableForm.firstName.$invalid && !tableForm.firstName.$pristine}" type="text" id="firstName"
+                   placeholder="First name" name="firstName"
                    ng-model="table.newTable.firstName" required>
         </div>
 
-        <div class="col-xs" ng-class="{'invalid' : tableForm.password.$invalid && !tableForm.password.$pristine,
-        'valid' : !tableForm.password.$invalid && !tableForm.password.$pristine}">
-            <input type="text" id="lastName" placeholder="Last name" name="password"
+        <div class="col-xs">
+            <input ng-class="{'invalid' : tableForm.lastName.$invalid && !tableForm.lastName.$pristine,
+                   'valid' : !tableForm.lastName.$invalid && !tableForm.lastName.$pristine}" type="text" id="lastName"
+                   placeholder="Last name" name="lastName"
                    ng-model="table.newTable.lastName" required>
         </div>
 
-        <div class="col-xs" ng-class="{'invalid' : tableForm.password.$invalid && !tableForm.password.$pristine,
-        'valid' : !tableForm.password.$invalid && !tableForm.password.$pristine}">
-            <input type="text" id="position" placeholder="Position" name="password"
+        <div class="col-xs">
+            <input ng-class="{'invalid' : tableForm.position.$invalid && !tableForm.position.$pristine,
+                   'valid' : !tableForm.position.$invalid && !tableForm.position.$pristine}" type="text" id="position"
+                   placeholder="Position" name="position"
                    ng-model="table.newTable.position" required>
         </div>
-
 
     </div>
     <div class="row end-xs">
@@ -83,7 +85,7 @@
 
 <div class="row end-xs">
     <div class="col-xs-4">
-    <button ng-click="table.delete()" type="submit"> Delete </button>
+        <button ng-click="table.delete()" type="submit"> Delete</button>
     </div>
 </div>
 

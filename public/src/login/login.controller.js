@@ -18,7 +18,7 @@
                 if (!err) {
                     $state.go('table');
                 } else {
-                    alert("Login or password invalid");
+                    alert("Login or password invalid. The correct one is 123/123");
                 }
             });
         };
