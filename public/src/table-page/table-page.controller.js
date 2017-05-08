@@ -27,7 +27,7 @@
             });
 
             tableService.deleteTables({ids: ids}, function (err, res) {
-                if(!err) vm.tableData = res;
+                if(!err) vm.tableData.deleteBy('id', ids);
             });
         };
 
@@ -43,7 +43,7 @@
 
         vm.update = function (data) {
             tableService.updateTable(data, function (err, res) {
-                if(!err) vm.tableData = res;
+                if(err) alert('failed to update data');
             })
         };
 
@@ -66,5 +66,13 @@
         $scope.$on("$destroy", function handler() {
             filterWatcher();
         });
+
+        vm.getTableIndexById = function(id) {
+            for (var i = 0; i < vm.tableData.length; i++) {
+                if (vm.tableData[i].id == id) return i;
+            }
+
+            return -1;
+        }
     }
 })();

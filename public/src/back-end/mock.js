@@ -59,7 +59,7 @@
 
         $httpBackend.whenDELETE('/api/table').respond(function (method, url, data) {
             var ids = JSON.parse(data).ids;
-            deleteTableDataByIds(ids);
+            tableData.deleteBy('id', ids);
 
             return [200, tableData, {}];
         });
@@ -67,7 +67,7 @@
 
         $httpBackend.whenPUT('/api/table').respond(function (method, url, data) {
             var data = JSON.parse(data);
-            tableData[getTableIndexById(data.id)] = data;
+            tableData[tableData.getIndexBy('id', data.id)] = data;
 
             return [200, tableData, {}];
         });
@@ -85,22 +85,6 @@
 
                 return [200, filtered, {}];
             });
-
-        function deleteTableDataByIds(ids) {
-            for (var i = 0; i < ids.length; i++) {
-                for (var j = 0; j < tableData.length; j++) {
-                    if (ids[i] == tableData[j].id) tableData.splice(j, 1);
-                }
-            }
-        }
-
-        function getTableIndexById(id) {
-            for (var i = 0; i < tableData.length; i++) {
-                if (tableData[i].id == id) return i;
-            }
-
-            return -1;
-        }
     }
 
 })();
